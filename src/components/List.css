@@ -1,0 +1,67 @@
+.popover-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.event-item {
+  display: flex;
+  background: white;
+  /* border-radius: 8px; */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  align-items: flex-start;
+  gap: 20px;
+  padding-left: 25px;
+  margin-left: 10;
+  position: relative;
+}
+.event-details-modal {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+.blue-line {
+  width: 8px;
+  background: #4e94f5;
+  /* border-radius: 8px 0 0 8px; */
+  position: absolute;
+  
+  left: 0;
+  top: 0;
+  bottom: 0;
+}
+.event-content {
+  flex-grow: 1;
+}
+
+.event-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.event-title {
+  font-weight: bold;
+  font-size: 14px;
+  color: #333;
+}
+
+.event-actions {
+  display: flex;
+  gap: 5px;
+}
+
+.event-info {
+  font-size: 12px;
+  color: #555;
+  margin-top: 4px;
+}
+
+.event-date-time {
+  font-size: 12px;
+  color: #777;
+}

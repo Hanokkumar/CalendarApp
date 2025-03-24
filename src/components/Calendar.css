@@ -1,0 +1,161 @@
+.calendar-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .calendar-header {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #4E94F5;
+    margin-bottom: 20px;
+  }
+  
+  .rbc-calendar {
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .rbc-event {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .rbc-event::after {
+    content: attr(data-count);
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: gold;
+    color: black;
+    font-size: 12px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+
+  .event-popup::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 10px;
+    background: #4e94f5; /* Blue left border */
+    border-radius: 8px 0 0 8px;
+  }
+  
+  .event-number {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #ffc107; /* Yellow badge */
+    color: black;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Remove overflow hidden from week/day view events */
+.rbc-time-view .rbc-day-slot .rbc-event,
+.rbc-day-view .rbc-day-slot .rbc-event {
+  overflow: visible !important;
+}
+
+/* Ensure event content is fully visible */
+.rbc-time-view .rbc-event-content,
+.rbc-day-view .rbc-event-content {
+  overflow: visible !important;
+  height: 100% !important;
+}
+
+
+/* Hide time in week/day views only */
+.rbc-time-view .rbc-event-time,
+.rbc-day-view .rbc-event-time {
+  display: none !important;
+}
+
+.rbc-day-slot .rbc-
+/* Ensure event content takes full space */
+.rbc-time-view .rbc-event-content,
+.rbc-day-view .rbc-event-content {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  height: 100% !important;
+}
+
+/* Adjust event popup styling for week/day */
+.rbc-time-view .event-popup,
+.rbc-day-view .event-popup {
+  width: 200px !important;
+  height: 80px !important;
+  padding: 8px 12px !important;
+}
+
+/* Remove default time slot styling */
+.rbc-time-view .rbc-timeslot-group,
+.rbc-day-view .rbc-timeslot-group {
+  min-height: 80px !important;
+}
+/* Add this to your CSS */
+/* Hide ALL time displays in week/day views */
+.rbc-time-view .rbc-event-time,
+.rbc-day-view .rbc-event-time,
+.rbc-time-view .rbc-event-label,
+.rbc-day-view .rbc-event-label {
+  display: none !important;
+}
+
+/* Make sure your custom event content takes full width */
+.rbc-time-view .rbc-event-content,
+.rbc-day-view .rbc-event-content {
+  width: 100% !important;
+}
+
+/* Add to Calendar.css */
+.rbc-time-view .rbc-event,
+.rbc-day-view .rbc-event {
+  position: relative;
+  overflow: visible !important;
+}
+
+.event-list-popover {
+  position: absolute;
+  z-index: 1500;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  width: 280px;
+}
+
+/* For month view */
+.rbc-month-view .event-list-popover {
+  top: var(--popover-top);
+  left: var(--popover-left);
+}
+
+/* For week/day views */
+.rbc-time-view .event-list-popover,
+.rbc-day-view .event-list-popover {
+  top: var(--popover-top);
+  left: var(--popover-left);
+  transform: none;
+}
