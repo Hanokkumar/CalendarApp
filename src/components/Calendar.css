@@ -22,6 +22,8 @@
   .rbc-event {
     position: relative;
     display: flex;
+    height: 65px;
+    margin-top: -2px;
     align-items: center;
     justify-content: center;
   }
@@ -91,8 +93,8 @@
 .rbc-day-view .rbc-event-time {
   display: none !important;
 }
-
-.rbc-day-slot .rbc-
+/* 
+.rbc-day-slot .rbc- */
 /* Ensure event content takes full space */
 .rbc-time-view .rbc-event-content,
 .rbc-day-view .rbc-event-content {
@@ -105,15 +107,18 @@
 /* Adjust event popup styling for week/day */
 .rbc-time-view .event-popup,
 .rbc-day-view .event-popup {
-  width: 200px !important;
-  height: 80px !important;
-  padding: 8px 12px !important;
+  width: 140px !important;
+  /* height: 70px !important; */
+  padding: 5px 7.5px !important;
+  font-size: 12px;
+  /* margin-left: -10px; */
 }
+
 
 /* Remove default time slot styling */
 .rbc-time-view .rbc-timeslot-group,
 .rbc-day-view .rbc-timeslot-group {
-  min-height: 80px !important;
+  min-height: 100px !important;
 }
 /* Add this to your CSS */
 /* Hide ALL time displays in week/day views */
@@ -131,11 +136,11 @@
 }
 
 /* Add to Calendar.css */
-.rbc-time-view .rbc-event,
+/* .rbc-time-view .rbc-event,
 .rbc-day-view .rbc-event {
   position: relative;
   overflow: visible !important;
-}
+} */
 
 .event-list-popover {
   position: absolute;

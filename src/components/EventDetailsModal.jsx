@@ -7,7 +7,8 @@ import moment from "moment";
 
 Modal.setAppElement("#root");
 
-const EventDetailsModal = ({ event, onClose }) => (
+const EventDetailsModal = ({ event, onClose }) => 
+  (
   <Modal
     isOpen={true}
     onRequestClose={onClose}

@@ -5,6 +5,8 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import './Calendar.css';
 import { fetchCalendarData } from '../services/api';
 import EventListModal from './EventListModal';
+import { Box } from '@mui/material';
+import EventDetailsModal from './EventDetailsModal';
 
 const localizer = momentLocalizer(moment);
 
@@ -15,7 +17,8 @@ const Calendar = () => {
   const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 });
   const [anchorEl, setAnchorEl] = useState(null);
   const [currentView, setCurrentView] = useState("month");
-
+  const [selectedEvent, setSelectedEvent] = useState(null);
+    const [showDetailsModal, setShowDetailsModal] = useState(false);
   useEffect(() => {
     loadData(currentView);
   }, [currentView]);
@@ -89,6 +92,16 @@ const Calendar = () => {
   //     setEvents(Object.values(groupedEvents));
   //   }
   // };
+
+  
+  
+  
+ 
+  
+    const handleCloseDetails = () => {
+      setShowDetailsModal(false);
+    };
+  
   const loadData = async (view) => {
     let startDate, endDate;
   
@@ -149,9 +162,18 @@ const Calendar = () => {
   
   // Modified handleEventClick
   const handleEventClick = (event, e) => {
+
     const eventsToShow = event.originalEvents || [event];
-    setSelectedDateEvents(eventsToShow);
-    setShowEventListModal(true);
+    console.log(eventsToShow)
+    if(eventsToShow.length==1){
+      setSelectedEvent(eventsToShow[0]);
+      setShowDetailsModal(true);
+    }else{
+      setSelectedDateEvents(eventsToShow);
+      setShowEventListModal(true);
+    }
+ 
+   
     
     const rect = e.target.getBoundingClientRect();
     
@@ -166,7 +188,7 @@ const Calendar = () => {
       setModalPosition({
         top: rect.top + window.scrollY - 170, // Slightly above event
         left: Math.max( // Ensure it doesn't go off left screen edge
-          rect.left + window.scrollX + 195, 
+          rect.left + window.scrollX + 135, 
           10 // Minimum 10px from left edge
         ),
       });
@@ -224,7 +246,7 @@ const Calendar = () => {
           <div style={{ fontSize: "12px", fontWeight: "normal" }}>
             Interviewer: {event.candidate}
           </div>
-          <div style={{ fontSize: "12px", fontWeight: "normal" }}>
+          <div style={{ fontSize: "10px", fontWeight: "normal" }}>
             Time: {moment(event.start).format('h:mm A')} -{' '}
             {moment(event.end).format('h:mm A')}
           </div>
@@ -252,10 +274,15 @@ const Calendar = () => {
           setCurrentView(view);
           loadData(view);
         }}
+        step={60} // Ensure events are split hourly
+        timeslots={1} // Ensure each slot is 1 hour
+        min={new Date(2024, 7, 29, 0, 0)} // Calendar starts from midnight
+        max={new Date(2024, 7, 29, 23, 59)} // Calendar ends at midnights
         selectable
         onSelectEvent={handleEventClick}
         eventPropGetter={eventStyleGetter}
         components={{ event: EventComponent }}
+        
       />
 
       {showEventListModal && (
@@ -270,6 +297,33 @@ const Calendar = () => {
           position={modalPosition}
         />
       )}
+      {showDetailsModal && (
+        <>
+        
+          <Box
+            sx={{
+              position: "fixed",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              zIndex: 1200, // Highest z-index
+              width: "80%",
+              maxWidth: "600px",
+            }}
+          >
+            <EventDetailsModal
+              event={{
+                ...selectedEvent,
+                date: moment(selectedEvent.start).format("DD MMM YYYY"),
+                meetingLink: selectedEvent.meetingLink || "#",
+                createdBy: selectedEvent.createdBy || "Admin",
+              }}
+              onClose={handleCloseDetails}
+            />
+          </Box>
+        </>
+      )}
+      
     </div>
   );
 };
